@@ -10,11 +10,13 @@ import com.hummingbird.cocoatouch.uikit.UIStoryboard;
 
 public class MainStoryboard extends UIStoryboard
 {
+    @Override
     public int initialViewControllerID()
     {
         return R.layout.viewcontroller;
     }
 
+    @Override
     public Object viewControllerForIdentifier(int identifier)
     {
         switch (identifier)
