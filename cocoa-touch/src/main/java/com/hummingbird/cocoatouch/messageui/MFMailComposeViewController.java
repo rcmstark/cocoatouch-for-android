@@ -1,6 +1,7 @@
 package com.hummingbird.cocoatouch.messageui;
 import android.content.Intent;
 
+
 public class MFMailComposeViewController extends MFComposeViewController
 {
     public MFMailComposeViewController()

@@ -45,6 +45,8 @@ public class MainActivity extends UIViewController
         super.viewDidLoad();
         NSLog(__PRETTY_FUNCTION__());
     }
+    
+    @IBAction(R.id.button)
 }
 ```
 

@@ -1,7 +1,10 @@
 package com.hummingbird.cocoatouch.uikit;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.RelativeLayout;
+
+import com.hummingbird.objectivec.parser.IBOutletParser;
 
 public class UITableViewCell extends UIView
 {
@@ -26,7 +29,7 @@ public class UITableViewCell extends UIView
 
     public void init()
     {
-        RelativeLayout.LayoutParams layout_description = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT,44);
+        RelativeLayout.LayoutParams layout_description = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,44);
         this.setLayoutParams(layout_description);
     }
 }

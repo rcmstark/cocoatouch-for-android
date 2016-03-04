@@ -1,6 +1,12 @@
 apply plugin: 'com.jfrog.bintray'
 
-version = '0.0.1' //YOUR LIBRARY VERSION
+version = '0.0.2' //YOUR LIBRARY VERSION
+//
+// To upload, go to terminal:
+// > cd project_folder
+// > ./gradlew install
+// > ./gradlew bintrayUpload
+//
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs

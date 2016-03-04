@@ -2,9 +2,12 @@ package com.hummingbird.cocoatouch.uikit;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
+
+import com.hummingbird.objectivec.parser.IBOutletParser;
 
 
 public class UIView extends RelativeLayout implements UIViewHierarchy
@@ -24,10 +27,7 @@ public class UIView extends RelativeLayout implements UIViewHierarchy
 
     public void setHidden(Boolean hidden)
     {
-        if (hidden)
-            setVisibility(View.INVISIBLE);
-        else
-            setVisibility(View.VISIBLE);
+        this.setVisibility(hidden?View.INVISIBLE:View.VISIBLE);
     }
 
     public void endEditing(Boolean end)

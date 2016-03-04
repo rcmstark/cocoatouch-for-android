@@ -17,6 +17,18 @@ public class UIButton extends Button
     public UIButton(Context context, AttributeSet attrs) {super(context, attrs);}
     public UIButton(Context context, AttributeSet attrs, int defStyleAttr) {super(context, attrs, defStyleAttr);}
 
+    public void setTitle(String title, int state)
+    {
+        this.setText(title);
+    }
+    public String titleForState(int state)
+    {
+        return this.getText().toString();
+    }
+    public void setHidden(Boolean hidden)
+    {
+        this.setVisibility(hidden?View.INVISIBLE:View.VISIBLE);
+    }
     public void addTarget(final Object target, final NSSelector action, int event)
     {
         Method method = null;
@@ -37,7 +49,7 @@ public class UIButton extends Button
     public void addTarget(final Object target, final Method method, int event)
     {
         final UIButton button = this;
-        this.setOnClickListener(new View.OnClickListener()
+        this.setOnClickListener(new OnClickListener()
         {
             @Override
             public void onClick(View view)

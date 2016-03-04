@@ -11,4 +11,12 @@ public class NSMutableArray<NSObject> extends NSArray<NSObject>
     {
         this.array.add(index, object);
     }
+    public void removeObjectAtIndex(int index)
+    {
+        this.array.remove(index);
+    }
+    public void removeAllObjects()
+    {
+        this.array.removeAll(array);
+    }
 }
