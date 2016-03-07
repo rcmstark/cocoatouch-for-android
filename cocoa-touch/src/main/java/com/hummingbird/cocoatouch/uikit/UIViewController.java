@@ -1,11 +1,9 @@
 package com.hummingbird.cocoatouch.uikit;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ViewGroup;
-
 import com.hummingbird.cocoatouch.messageui.MFComposeViewController;
 import com.hummingbird.objectivec.parser.IBActionParser;
 import com.hummingbird.objectivec.parser.IBOutletParser;
@@ -134,6 +132,16 @@ public class UIViewController extends AppCompatActivity implements UIViewHierarc
     {
         super.onStop();
         viewDidDisappear(true);
+    }
+
+    @Override
+    protected void onRestart()
+    {
+        super.onRestart();
+        UIApplication application = UIApplication.sharedApplication();
+        UIApplicationDelegate delegate = application.delegate;
+        if (delegate != null)
+            delegate.applicationDidBecomeActive(application);
     }
 
     //Inplemanted in child

@@ -5,6 +5,10 @@ public class NSString extends NSObject
 {
     String string;
 
+    public static String FromClass(Class cls)
+    {
+        return cls.getName();
+    }
     public NSString(String string)
     {
         this.string = string;

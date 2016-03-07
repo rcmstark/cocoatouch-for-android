@@ -19,4 +19,8 @@ public class NSMutableArray<NSObject> extends NSArray<NSObject>
     {
         this.array.removeAll(array);
     }
+    public void removeObject(NSObject object)
+    {
+        this.array.remove(object);
+    }
 }

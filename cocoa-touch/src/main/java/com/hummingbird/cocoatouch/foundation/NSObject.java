@@ -8,5 +8,12 @@ public class NSObject extends Object
     {
         Log.d("LOG", string);
     }
+
+    public String __PRETTY_FUNCTION__()
+    {
+        final StackTraceElement e = Thread.currentThread().getStackTrace()[3];
+        final String s = e.getClassName();
+        return s.substring(s.lastIndexOf('.') + 1, s.length()) + "." + e.getMethodName();
+    }
 }
 

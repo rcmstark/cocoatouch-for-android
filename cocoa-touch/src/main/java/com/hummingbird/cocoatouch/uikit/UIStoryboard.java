@@ -27,6 +27,10 @@ public class UIStoryboard extends UIViewController
         viewController.setStoryboard(this);
         return viewController;
     }
+    public UIApplicationDelegate applicationDelegate()
+    {
+        return null;
+    }
 
     //
     // Trick Part
@@ -38,6 +42,11 @@ public class UIStoryboard extends UIViewController
         mainStoryboard = this;
         this.storyboard = this;
         this.navigationController = new UINavigationController(this);
+
+        UIApplication application = UIApplication.sharedApplication();
+        application.setContext(this);
+        application.delegate = this.applicationDelegate();
+        application.delegate.applicationDidBecomeActive(application);
     }
 
     @Override

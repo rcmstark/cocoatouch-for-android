@@ -3,14 +3,19 @@ package com.hummingbird.cocoatouch.foundation;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.hummingbird.cocoatouch.uikit.UIApplication;
 import com.hummingbird.cocoatouch.uikit.UIViewController;
 
 
 public class NSUserDefaults
 {
+
     private static NSUserDefaults nsUserDefault = null;
 
-    public NSUserDefaults standartUserDefaults()
+    //
+    // Class Methods
+    //
+    public static NSUserDefaults standartUserDefaults()
     {
         if (nsUserDefault == null)
             nsUserDefault = new NSUserDefaults();
@@ -18,18 +23,26 @@ public class NSUserDefaults
     }
 
     //
+    // Instance Methods
+    //
+    private Context context()
+    {
+        return UIApplication.sharedApplication().context();
+    }
+
+    //
     // Setters
     //
-    public void set(String string, String key, UIViewController viewController)
+    public void setObject(String string, String key)
     {
-        SharedPreferences preferences = viewController.getSharedPreferences(key, Context.MODE_PRIVATE);
+        SharedPreferences preferences = context().getSharedPreferences(key, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(key, string);
         editor.apply();
     }
-    public void set(Boolean bool, String key, UIViewController viewController)
+    public void setBool(Boolean bool, String key)
     {
-        SharedPreferences preferences = viewController.getSharedPreferences(key, Context.MODE_PRIVATE);
+        SharedPreferences preferences = context().getSharedPreferences(key, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(key, bool);
         editor.apply();
@@ -38,14 +51,14 @@ public class NSUserDefaults
     //
     // Getters
     //
-    public String string(String key, UIViewController viewController)
+    public String stringForKey(String key)
     {
-        SharedPreferences preferences = viewController.getSharedPreferences(key, Context.MODE_PRIVATE);
-        return preferences.getString(key,"");
+        SharedPreferences preferences = context().getSharedPreferences(key, Context.MODE_PRIVATE);
+        return preferences.getString(key,null);
     }
-    public Boolean bool(String key, UIViewController viewController)
+    public Boolean boolForKey(String key)
     {
-        SharedPreferences preferences = viewController.getSharedPreferences(key, Context.MODE_PRIVATE);
+        SharedPreferences preferences = context().getSharedPreferences(key, Context.MODE_PRIVATE);
         return preferences.getBoolean(key, false);
     }
 }
