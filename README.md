@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity
 }
 ```
 
-Not bad. But using this libraty, it becomes:
+Not bad. But using this library, it becomes:
 
 ```sh
 public class MainActivity extends UIViewController 
@@ -62,7 +62,7 @@ public class MainActivity extends UIViewController
 }
 ```
 
-Nice right? But it becomes better. The thing I most hate on Android SDK, it's how you can't alloc the activity to be presented and just pass objects. You need to transfer data via bundle and the SDK will creates an activity for you. This starts to be annoying when you neeed to pass a custom object and you have to implement Parcelable or Serializable. This adds a lots of lines of code, because Android copy objects between activies. This is an example of how to transfer a custom objects from one Activity to another in Android:
+Nice right? But it becomes better. The thing I most hate on Android SDK, it's how you can't alloc the activity to be presented and just pass objects. You need to transfer data via bundle and the SDK will create an activity for you. This starts to be annoying when you need to pass a custom object and you have to implement Parcelable or Serializable. This adds lots of lines of code, because Android copy objects between activities. This is an example of how to transfer a custom objects from one Activity to another in Android:
 
 CustomObject.java
 
@@ -191,10 +191,9 @@ I added an example app that use some structures, you should try it.
 
 ### 3. //TODO
 
-Use composition instead of inheritance to simulate Android structures. Inheritance is bad because:
-
-- UIScrollView can be ViewerPager, ScrollView, HorizontalScrollView, VerticalScrollView.
-- You can not simulate all cases with inheritance.
+- Use composition instead of inheritance to simulate Android structures. Inheritance is bad because:
+    - UIScrollView can be ViewerPager, ScrollView, HorizontalScrollView, VerticalScrollView.
+    - You can not simulate all cases with inheritance.
 - Figure out how to use composition and still can set class name in XML. 
 - Upgrade viewDidLoad, viewDidAppear, applicationDidBecomeActived... they are called more than they are required. But is fine right now, you app will work great.
 
@@ -251,7 +250,7 @@ public class AppDelegate extends UIResponder implements UIApplicationDelegate
     }
 }
 ```
-4.6 - Override methods in MainStoryboard, declaring the initial UIViewController id and and mapping layout ids with classes
+4.6 - Override methods in MainStoryboard, declaring the initial UIViewController id and mapping layout ids with classes
 
 ```sh
 public class MainStoryboard extends UIStoryboard
@@ -304,7 +303,7 @@ public class TutorialController extends UIViewController
 
 File: tutorialcontroller.xml
 
-Android Studio creates it in the folder res->laytout. You can edit your canvas and work with pure XML (I miss you XCODE interfacebuilder...)
+Create it in the folder res->layout. You can edit your canvas and work with pure XML. Yeah you will need to learn how to handle pure XML for Android. (I miss you XCODE interfacebuilder...).
 
 File: MainStoryboard.java
 ```sh
