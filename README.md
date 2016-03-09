@@ -62,7 +62,7 @@ public class MainActivity extends UIViewController
 }
 ```
 
-Nice right? But it becomes better. The thing I most hate on Android SDK, it's how you can't alloc the activity to be presented and just pass objects. You need to transfer data via bundle and the SDK will creates an activity for you. This starts to be annoying when you neeed to pass a custom object and you have to implement Parcelable or Serializable. This adds a lots of lines of code, because Android copy objects between activies. This is an example of how to transfer a custom objects from one Activity to another:
+Nice right? But it becomes better. The thing I most hate on Android SDK, it's how you can't alloc the activity to be presented and just pass objects. You need to transfer data via bundle and the SDK will creates an activity for you. This starts to be annoying when you neeed to pass a custom object and you have to implement Parcelable or Serializable. This adds a lots of lines of code, because Android copy objects between activies. This is an example of how to transfer a custom objects from one Activity to another in Android:
 
 CustomObject.java
 
@@ -113,8 +113,8 @@ public void presentReceiverController()
 {
     CustomObject customObject = new CustomObject(...);
     
-    Intent intent = new Intent(this, CustomController.class);
-    intent.putParcelableExtra(("key_customObject", customObject);
+    Intent intent = new Intent(this, ReceiverActivity.class);
+    intent.putParcelableExtra("key_customObject", customObject);
     
     this.startActivity(intent);
 }
@@ -129,7 +129,7 @@ public class ReceiverActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_receiver);
         
         //Get custom Object
         Bundle bundle = getIntent().getExtras();
@@ -185,7 +185,9 @@ Sweet, right? Simple as you do in iOS.
 
 ### 2. Limitations
 
-I created some structures such as UIViewContorller, UIButton, UITableView, UILabel... that I needed to create my app. But there are a lot of to do yet. iOS have a bunch of other elements that needs to be coded. Maybe I'm here looking for contributors. I added an example app that use some structures, you should try it.
+I created some structures such as UIViewContorller, UIButton, UITableView, UILabel... that I needed to create my app. But there are a lot of to do yet. iOS have a bunch of other elements that needs to be coded. Maybe I'm here looking for contributors. 
+
+I added an example app that use some structures, you should try it.
 
 ### 3. //TODO
 
@@ -193,7 +195,8 @@ Use composition instead of inheritance to simulate Android structures. Inheritan
 
 - UIScrollView can be ViewerPager, ScrollView, HorizontalScrollView, VerticalScrollView.
 - You can not simulate all cases with inheritance.
-- Upgrade viewDidLoad, viewDidAppear, applicationDidBecomeActived... they are called more than they are required in iOS. But is fine right now, you app will work great.
+- Figure out how to use composition and still can set class name in XML. 
+- Upgrade viewDidLoad, viewDidAppear, applicationDidBecomeActived... they are called more than they are required. But is fine right now, you app will work great.
 
 
 ### 4. Installation and Configure Project
