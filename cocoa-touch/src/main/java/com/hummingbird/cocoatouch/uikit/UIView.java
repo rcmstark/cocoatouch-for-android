@@ -1,46 +1,37 @@
 package com.hummingbird.cocoatouch.uikit;
-
-import android.content.Context;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.RelativeLayout;
-
-import com.hummingbird.objectivec.parser.IBOutletParser;
+import android.app.Fragment;
+import com.hummingbird.cocoatouch.uikit.helper.UIFragment;
 
 
-public class UIView extends RelativeLayout implements UIViewHierarchy
+public class UIView extends UIResponder implements UIViewHierarchy
 {
-    private UIViewController controller =  null;
 
-    public UIView(Context context, UIViewController viewController)
+    private UIFragment fragment;
+
+
+    //
+    // Public Instance Methods
+    //
+    public Object viewWithTag(int tag)
     {
-        super(context);
-        this.controller = viewController;
+        return this.fragment.viewWithTag(tag);
     }
 
-    public Object viewWithTag(int id)
+    //
+    // Protected Instance Methods
+    //
+    protected  UIView()
     {
-        return findViewById(id);
+        this.fragment = new UIFragment();
     }
-
-    public void setHidden(Boolean hidden)
+    protected UIView(UIViewController viewController, int identifier)
     {
-        this.setVisibility(hidden?View.INVISIBLE:View.VISIBLE);
+        this.fragment = new UIFragment();
+        this.fragment.identifier = identifier;
+        this.fragment.viewController = viewController;
     }
-
-    public void endEditing(Boolean end)
+    public UIFragment fragment()
     {
-        InputMethodManager inputManager = (InputMethodManager) this.controller.getSystemService(Context.INPUT_METHOD_SERVICE);
-        View view = this.controller.getCurrentFocus();
-        if (view != null)
-        {
-            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-        }
+        return this.fragment;
     }
-
-    public UIView(Context context){super(context);}
-    public UIView(Context context, AttributeSet attrs) {super(context, attrs);}
-    public UIView(Context context, AttributeSet attrs, int defStyleAttr){super(context, attrs, defStyleAttr);}
 }

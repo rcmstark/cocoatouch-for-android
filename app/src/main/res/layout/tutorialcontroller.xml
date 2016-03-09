@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TutorialController"
+    android:background="#ffffff">
+
+    <com.hummingbird.cocoatouch.uikit.UIScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tutorial_scrollView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+    </com.hummingbird.cocoatouch.uikit.UIScrollView>
+
+    <com.hummingbird.cocoatouch.uikit.UIButton
+        android:id="@+id/tutorial_button"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:text="END TUTORIAL"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:paddingBottom="14dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        android:paddingTop="14dp"
+        android:layout_margin="14dp"/>
+
+</RelativeLayout>

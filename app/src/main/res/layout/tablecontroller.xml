@@ -4,4 +4,10 @@
     android:layout_height="match_parent"
     android:background="#e7e7e7">
 
+    <com.hummingbird.cocoatouch.uikit.UITableView
+        android:id="@+id/tableview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.hummingbird.cocoatouch.uikit.UITableView>
+
 </LinearLayout>

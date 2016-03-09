@@ -29,7 +29,8 @@ public class UIAlertView extends NSObject
 
     public void show()
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder((Context)this.delegate);
+        Context context = UIApplication.sharedApplication().context();
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
         builder.setMessage(message);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener()

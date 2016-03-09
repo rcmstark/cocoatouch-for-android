@@ -7,5 +7,4 @@ public interface  UITableViewDataSource
 {
     public int tableViewNumberOfRowsInSection(UITableView tableView, int section);
     public UITableViewCell tableViewCellForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath);
-    public Context context();
 }

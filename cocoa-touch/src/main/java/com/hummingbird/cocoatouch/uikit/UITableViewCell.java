@@ -1,13 +1,17 @@
 package com.hummingbird.cocoatouch.uikit;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
+import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.hummingbird.objectivec.parser.IBOutletParser;
 
-public class UITableViewCell extends UIView
+public class UITableViewCell extends RelativeLayout implements UIViewHierarchy
 {
+    @Override
+    public Object viewWithTag(int tag)
+    {
+        return this.findViewById(tag);
+    }
 
     public UITableViewCell(Context context)
     {

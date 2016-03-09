@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <com.hummingbird.cocoatouch.uikit.UIButton
+        android:id="@+id/crossdissolve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cross Dissolve"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"/>
+
+    <com.hummingbird.cocoatouch.uikit.UIButton
+        android:id="@+id/coververtical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cover Vertical"
+        android:layout_gravity="center"/>
+
+    <com.hummingbird.cocoatouch.uikit.UIButton
+        android:id="@+id/push"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Push"
+        android:layout_gravity="center"/>
+
+    <com.hummingbird.cocoatouch.uikit.UIButton
+        android:id="@+id/noAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Animation"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

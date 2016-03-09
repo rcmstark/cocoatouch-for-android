@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <com.hummingbird.cocoatouch.uikit.UILabel
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="100dp"/>
+
+    <com.hummingbird.cocoatouch.uikit.UIButton
+        android:id="@+id/login_facebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Facebook"
+        android:layout_gravity="center"/>
+
+    <com.hummingbird.cocoatouch.uikit.UILabel
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="50dp"/>
+
+    <com.hummingbird.cocoatouch.uikit.UIButton
+        android:id="@+id/share_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:layout_gravity="center"/>
+
+    <com.hummingbird.cocoatouch.uikit.UIButton
+        android:id="@+id/share_sms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SMS"
+        android:layout_gravity="center"/>
+
+    <com.hummingbird.cocoatouch.uikit.UIButton
+        android:id="@+id/share_whatsapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Whatsapp"
+        android:layout_gravity="center"/>
+
+    <com.hummingbird.cocoatouch.uikit.UIButton
+        android:id="@+id/share_facebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Facebook"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

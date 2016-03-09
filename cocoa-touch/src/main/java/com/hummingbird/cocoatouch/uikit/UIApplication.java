@@ -1,6 +1,7 @@
 package com.hummingbird.cocoatouch.uikit;
 
 
+import android.app.Activity;
 import android.content.Context;
 
 public class UIApplication extends UIResponder
@@ -30,4 +31,9 @@ public class UIApplication extends UIResponder
     {
         return this.context;
     }
+    public Activity activity()
+    {
+        return (Activity)this.context;
+    }
+
 }
