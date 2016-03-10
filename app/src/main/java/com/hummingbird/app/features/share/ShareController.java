@@ -41,7 +41,7 @@ public class ShareController extends UIViewController implements FacebookLoginDe
     }
     @IBAction(R.id.share_facebook) public void shareFacebook(UIButton sender)
     {
-        Facebook.share(link, this);
+        Facebook.share(link, "CocoaTouch for Android!", this);
     }
 
     //

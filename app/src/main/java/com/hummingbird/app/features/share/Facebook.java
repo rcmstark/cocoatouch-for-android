@@ -34,12 +34,12 @@ public class Facebook extends NSObject
         }
         return facebook;
     }
-    public static void share(String link, UIViewController fromViewController)
+    public static void share(String link, String title, UIViewController fromViewController)
     {
         Facebook.sharedInstance();
         ShareLinkContent content = new ShareLinkContent.Builder()
                 .setContentUrl(Uri.parse(link))
-                .setContentTitle("CocoaTouch for Android")
+                .setContentTitle(title)
                 .build();
         ShareDialog.show(fromViewController.view.fragment(), content);
     }
