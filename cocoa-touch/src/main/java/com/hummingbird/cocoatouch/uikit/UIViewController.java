@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 
 import com.hummingbird.animations.NoneTransition;
 import com.hummingbird.animations.PushTransition;
+import com.hummingbird.cocoatouch.foundation.NSMutableArray;
 import com.hummingbird.cocoatouch.messageui.MFComposeViewController;
 import com.hummingbird.cocoatouch.uikit.helper.UIFragment;
 
@@ -13,10 +14,11 @@ public class UIViewController extends UIResponder implements UIViewHierarchy
     public UINavigationController navigationController;
     public UIStoryboard storyboard;
     public UIView view;
-    public UIViewController presentingViewController;
-    public UIViewController presentedViewController;
     public UIModalTransitionStyle modalTransitionStyle = UIModalTransitionStyle.CoverVertical;
-
+    private NSMutableArray<UIViewController>childViewControllers = new NSMutableArray<>();
+    private UIViewController parentViewController;
+    private UIViewController presentingViewController;
+    private UIViewController presentedViewController;
 
     //
     // Public Instance Methods
@@ -37,6 +39,31 @@ public class UIViewController extends UIResponder implements UIViewHierarchy
     {
         this.navigationController.dismissModalViewControllerAnimated(animated);
     }
+    public void addChildViewController(UIViewController viewController)
+    {
+        viewController.setParentViewController(this);
+        this.childViewControllers.addObject(viewController);
+    }
+    public void removeFromParentViewController()
+    {
+        this.parentViewController.childViewControllers.removeObject(this);
+    }
+
+    //
+    // Get Methods
+    //
+    public UIViewController parentViewController()
+    {
+        return this.parentViewController;
+    }
+    public UIViewController presentingViewController()
+    {
+        return this.presentingViewController;
+    }
+    public UIViewController presentedViewController()
+    {
+        return this.presentedViewController;
+    }
 
     //
     // Protected Instance Methods
@@ -45,10 +72,45 @@ public class UIViewController extends UIResponder implements UIViewHierarchy
     {
         this.view = new UIView(this, identifier);
     }
+    protected void setParentViewController(UIViewController parentViewController)
+    {
+        this.parentViewController = parentViewController;
+    }
+    protected void setPresentingViewController(UIViewController presentingViewController)
+    {
+        this.presentingViewController = presentingViewController;
+    }
+    protected void setPresentedViewController(UIViewController presentedViewController)
+    {
+        this.presentedViewController = presentedViewController;
+    }
 
-    public void viewDidLoad() {}
-    public void viewWillAppear(Boolean animated) {}
-    public void viewDidAppear(Boolean animated) {}
-    public void viewWillDisappear(Boolean animated) {}
-    public void viewDidDisappear(Boolean aniamted){}
+    //
+    // Life Cycle Notificaitons
+    //
+    public void viewDidLoad()
+    {
+        for (UIViewController viewController : this.childViewControllers)
+            viewController.viewDidLoad();
+    }
+    public void viewWillAppear(Boolean animated)
+    {
+        for (UIViewController viewController : this.childViewControllers)
+            viewController.viewWillAppear(animated);
+    }
+    public void viewDidAppear(Boolean animated)
+    {
+        for (UIViewController viewController : this.childViewControllers)
+            viewController.viewDidAppear(animated);
+    }
+    public void viewWillDisappear(Boolean animated)
+    {
+        for (UIViewController viewController : this.childViewControllers)
+            viewController.viewWillDisappear(animated);
+    }
+    public void viewDidDisappear(Boolean animated)
+    {
+        for (UIViewController viewController : this.childViewControllers)
+            viewController.viewWillDisappear(animated);
+    }
 }
