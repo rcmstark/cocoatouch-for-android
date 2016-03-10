@@ -4,8 +4,6 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
 import com.hummingbird.animations.NoneTransition;
 import com.hummingbird.animations.PushTransition;
 import com.hummingbird.cocoatouch.foundation.NSArray;
@@ -16,8 +14,10 @@ import com.hummingbird.cocoatouch.uikit.helper.UIFragment;
 
 public class UINavigationController extends AppCompatActivity
 {
+
     private NSMutableArray<UIViewController> pushViewControllers = new NSMutableArray<>();
     private NSMutableArray<UIViewController> modalViewControllers = new NSMutableArray<>();
+
 
     //
     // Public Instance Methods
@@ -35,15 +35,22 @@ public class UINavigationController extends AppCompatActivity
     {
         UIViewController presentedViewController = lastViewController(this.pushViewControllers);
         viewController.navigationController = this;
-        viewController.presentingViewController = presentedViewController;
+        viewController.setPresentingViewController(presentedViewController);
         viewController.view.fragment().transition = animated?new PushTransition():new NoneTransition();
         if (presentedViewController != null)
-            presentedViewController.presentedViewController = viewController;
+            presentedViewController.setPresentedViewController(viewController);
         this.pushViewControllers.addObject(viewController);
         presentViewController(viewController, animated);
     }
     public void popViewController(Boolean animated)
     {
+        //
+        // Applications is in foreground because this action was trigged by user.
+        // This code make ViewControllers to receive calls from viewDidAppear or viewDidDisappead...
+        //
+        UIApplication.sharedApplication().setNotificationsEnabled(true);
+
+
         if (this.pushViewControllers.count() == 1) return;
 
         UIViewController controllerToRemove = lastViewController(this.pushViewControllers);
@@ -54,6 +61,13 @@ public class UINavigationController extends AppCompatActivity
     }
     public void popToRootViewController(Boolean animated)
     {
+        //
+        // Applications is in foreground because this action was trigged by user.
+        // This code make ViewControllers to receive calls from viewDidAppear or viewDidDisappead...
+        //
+        UIApplication.sharedApplication().setNotificationsEnabled(true);
+
+
         int lastIndex = lastIndexOfArray(this.pushViewControllers);
         for (int i = lastIndex; i > 0; i--)
         {
@@ -73,10 +87,10 @@ public class UINavigationController extends AppCompatActivity
         if (presentedViewController == null)
             presentedViewController = lastViewController(this.pushViewControllers);
 
-        viewController.navigationController = null;
-        viewController.presentingViewController = presentedViewController;
+        viewController.navigationController = this;
+        viewController.setPresentingViewController(presentedViewController);
         viewController.view.fragment().transition = UIModalTransition.transition(viewController.modalTransitionStyle,animated);
-        presentedViewController.presentedViewController = viewController;
+        presentedViewController.setPresentedViewController(viewController);
         this.modalViewControllers.addObject(viewController);
         presentViewController(viewController, animated);
     }
@@ -86,6 +100,13 @@ public class UINavigationController extends AppCompatActivity
     }
     protected void dismissModalViewControllerAnimated(boolean animated)
     {
+        //
+        // Applications is in foreground because this action was trigged by user.
+        // This code make ViewControllers to receive calls from viewDidAppear or viewDidDisappead...
+        //
+        UIApplication.sharedApplication().setNotificationsEnabled(true);
+
+
         UIViewController controllerToRemove = lastViewController(this.modalViewControllers);
         if (controllerToRemove == null) return;
 
@@ -104,6 +125,13 @@ public class UINavigationController extends AppCompatActivity
     //
     private void presentViewController(UIViewController viewController, Boolean animated)
     {
+        //
+        // Applications is in foreground because this action was trigged by user.
+        // This code make ViewControllers to receive calls from viewDidAppear or viewDidDisappead...
+        //
+        UIApplication.sharedApplication().setNotificationsEnabled(true);
+
+
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         UIFragment fragment = viewController.view.fragment();
         fragment.transition = animated?fragment.transition:new NoneTransition();
@@ -125,15 +153,13 @@ public class UINavigationController extends AppCompatActivity
     //
     // Android Methods
     //
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
+    @Override protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(this.identifier());
         init();
     }
-    @Override
-    public void onBackPressed()
+    @Override public void onBackPressed()
     {
         if (this.modalViewControllers.count() > 0)
             dismissModalViewControllerAnimated(true);
@@ -142,9 +168,7 @@ public class UINavigationController extends AppCompatActivity
         else
             super.onBackPressed();
     }
-
-    @Override
-    public void onRestart()
+    @Override public void onRestart()
     {
         super.onRestart();
         UIApplication application = UIApplication.sharedApplication();
@@ -152,9 +176,27 @@ public class UINavigationController extends AppCompatActivity
         if (delegate != null)
             delegate.applicationDidBecomeActive(application);
     }
+    @Override public void onPause()
+    {
+        super.onPause();
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+        //
+        // Applications goes to background. This code prevent ViewControllers
+        // to receive calls from viewDidAppear or viewDidDisappead...
+        //
+        UIApplication.sharedApplication().setNotificationsEnabled(false);
+    }
+    @Override public void onStop()
+    {
+        super.onStop();
+
+        //
+        // Applications goes to background. This code prevent ViewControllers
+        // to receive calls from viewDidAppear or viewDidDisappead...
+        //
+        UIApplication.sharedApplication().setNotificationsEnabled(false);
+    }
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
         UIApplication application = UIApplication.sharedApplication();
