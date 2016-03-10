@@ -1,10 +1,7 @@
 package com.hummingbird.cocoatouch.foundation;
-
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import com.hummingbird.cocoatouch.uikit.UIApplication;
-import com.hummingbird.cocoatouch.uikit.UIViewController;
 
 
 public class NSUserDefaults
@@ -23,42 +20,56 @@ public class NSUserDefaults
     }
 
     //
-    // Instance Methods
+    // Private Methods
     //
     private Context context()
     {
         return UIApplication.sharedApplication().context();
     }
+    private SharedPreferences preferences(String key)
+    {
+        return context().getSharedPreferences(key, Context.MODE_PRIVATE);
+    }
+    private SharedPreferences.Editor editor(String key)
+    {
+        return preferences(key).edit();
+    }
 
     //
-    // Setters
+    // Public Setters
     //
     public void setObject(String string, String key)
     {
-        SharedPreferences preferences = context().getSharedPreferences(key, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        SharedPreferences.Editor editor = editor(key);
         editor.putString(key, string);
         editor.apply();
     }
     public void setBool(Boolean bool, String key)
     {
-        SharedPreferences preferences = context().getSharedPreferences(key, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        SharedPreferences.Editor editor = editor(key);
         editor.putBoolean(key, bool);
         editor.apply();
     }
 
     //
-    // Getters
+    // Public Delete
+    //
+    public void removeObjectForKey(String key)
+    {
+        SharedPreferences.Editor editor = editor(key);
+        editor.remove(key);
+        editor.apply();
+    }
+
+    //
+    // Public Getters
     //
     public String stringForKey(String key)
     {
-        SharedPreferences preferences = context().getSharedPreferences(key, Context.MODE_PRIVATE);
-        return preferences.getString(key,null);
+        return preferences(key).getString(key, null);
     }
     public Boolean boolForKey(String key)
     {
-        SharedPreferences preferences = context().getSharedPreferences(key, Context.MODE_PRIVATE);
-        return preferences.getBoolean(key, false);
+        return preferences(key).getBoolean(key, false);
     }
 }
