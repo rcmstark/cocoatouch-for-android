@@ -194,8 +194,11 @@ I added an example app that use some structures, you should try it.
 - Use composition instead of inheritance to simulate Android structures. Inheritance is bad because:
     - UIScrollView can be ViewerPager, ScrollView, HorizontalScrollView, VerticalScrollView.
     - You can not simulate all cases with inheritance.
-- Figure out how to use composition and still can set class name in XML. 
-- Upgrade viewDidLoad, viewDidAppear, applicationDidBecomeActived... they are called more than they are required. But is fine right now, you app will work great.
+- Figure out how to use composition and still can set class in XML.
+    - Study links bellow and create a copy of android RelativeLayout's attributes to UIView, copy Button to UIBUtton...
+        - http://developer.android.com/training/custom-views/create-view.html
+        - http://developer.android.com/guide/topics/ui/custom-components.html
+        - http://stackoverflow.com/questions/2695646/declaring-a-custom-android-ui-element-using-xml
 
 
 ### 4. Installation and Configure Project
@@ -203,7 +206,7 @@ I added an example app that use some structures, you should try it.
 4.1 Add to Gradle the last version:
 
 ```sh
-compile 'com.hummingbird:cocoa-touch:0.0.4'
+compile 'com.hummingbird:cocoa-touch:0.0.5'
 ```
 
 4.2 - Create file: MainStoryboard.java
@@ -326,11 +329,20 @@ public class MainStoryboard extends UIStoryboard
 
 You have you new UIViewController set =) 
 
-### 6. Enjoy
+
+### 6. How I create I?
+
+- Think in one example or structure in iOS I would like to create
+- Code the example in iOS
+- Stackoverflow how to do the same/similar in Android
+- Code it in Android and make it works
+- Create classes to simulate iOS but do the Android code under the table
+
+### 7. Enjoy
 
 You can contact me here or just send me an email: rafael.castro@hummingbird.com.br
 
-### 7. License
+### 8. License
 
 Apache-2.0
 
