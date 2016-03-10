@@ -1,6 +1,5 @@
 package com.hummingbird.app;
 import android.content.res.Resources;
-
 import com.hummingbird.app.features.alerts.AlertController;
 import com.hummingbird.app.features.customobjects.GOTPresentCharactersController;
 import com.hummingbird.app.features.customobjects.GOTSetCharactersController;
@@ -41,6 +40,10 @@ public class MainStoryboard extends UIStoryboard
                 return new MainController();
             case R.layout.tutorialcontroller:
                 return new TutorialController();
+            case R.layout.tutorial1:
+            case R.layout.tutorial2:
+            case R.layout.tutorial3:
+                return new UIViewController();
             case R.layout.transitioncontroller:
                 return new TransitionController();
             case R.layout.nextviewcontroller:
