@@ -1,14 +1,21 @@
 package com.hummingbird.cocoatouch.foundation;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 
 public class NSArray<NSObject> implements Iterable<NSObject>
 {
-    protected ArrayList<NSObject> array = new ArrayList<NSObject>();
+    protected ArrayList<NSObject> array = new ArrayList<>();
 
 
+//    public static NSArray arrayWithObjects(NSObject ...objects)
+//    {
+//        NSArray result = new NSArray<>();
+//        List<NSObject> list = Arrays.asList(objects);
+//        result.array = new ArrayList<>(list);
+//        return result;
+//    }
     public int count()
     {
         return this.array.size();

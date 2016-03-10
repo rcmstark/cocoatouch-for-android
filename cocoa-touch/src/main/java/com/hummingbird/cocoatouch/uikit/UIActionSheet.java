@@ -2,8 +2,6 @@ package com.hummingbird.cocoatouch.uikit;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
-
-import com.hummingbird.cocoatouch.R;
 import com.hummingbird.cocoatouch.foundation.NSObject;
 
 
@@ -63,11 +61,5 @@ public class UIActionSheet extends NSObject
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
-
-
-
-
-
 }
 

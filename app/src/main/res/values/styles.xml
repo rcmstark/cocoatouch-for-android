@@ -13,7 +13,6 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textColorPrimary">#575757</item>
-
     </style>
 
 

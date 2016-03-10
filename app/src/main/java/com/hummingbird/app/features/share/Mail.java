@@ -1,5 +1,4 @@
 package com.hummingbird.app.features.share;
-import android.widget.Toast;
 import com.hummingbird.cocoatouch.foundation.NSObject;
 import com.hummingbird.cocoatouch.messageui.MFMailComposeViewController;
 import com.hummingbird.cocoatouch.uikit.UIAlertView;
