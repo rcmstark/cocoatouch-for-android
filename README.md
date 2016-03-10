@@ -10,7 +10,7 @@ If you are here, I will assume:
 
 ### 1. Why you should use it?
 
-In Android, Activity is equivalent to UIViewController and it normally look like:
+In Android, Activity is equivalent to UIViewController and it normally looks like:
 
 ```sh
 public class MainActivity extends AppCompatActivity 
@@ -78,7 +78,7 @@ public class CustomObject extends Object implements Parcelable
     }
     
     //
-    // Parcable Trash code
+    // Parcelable Trash code
     //
     public CustomObject(Parcel in) 
     {
@@ -174,7 +174,7 @@ public class ReceiverController extends UIViewController
     @Override public void viewDidLoad()
     {
         super.viewDidLoad();
-        // Just access object normaly
+        // Just access object normally
         NSLog(this.customObject.name);
     }
 ```
@@ -195,7 +195,7 @@ I added an example app that use some structures, you should try it.
     - UIScrollView can be ViewerPager, ScrollView, HorizontalScrollView, VerticalScrollView.
     - You can not simulate all cases with inheritance.
 - Figure out how to use composition and still can set class in XML.
-    - Study links bellow and create a copy of android RelativeLayout's attributes to UIView, copy Button to UIBUtton...
+    - Study links bellow and create a copy of android RelativeLayout's attributes to UIView, copy Button to UIButton...
         - http://developer.android.com/training/custom-views/create-view.html
         - http://developer.android.com/guide/topics/ui/custom-components.html
         - http://stackoverflow.com/questions/2695646/declaring-a-custom-android-ui-element-using-xml
@@ -226,7 +226,7 @@ public class MainStoryboard extends UIStoryboard
             </intent-filter>
         </activity> 
 ```
-4.4 - Create a XML in res/layout named mainstoryboard.xml
+4.4 - Create a XML in res/layout named mainstoryboard.xml. (Copy and paste this code)
 
 ```sh
 <?xml version="1.0" encoding="utf-8"?>
@@ -287,7 +287,7 @@ public class MainStoryboard extends UIStoryboard
 }
 ```
 
-The initialViewControllerID is the id of the first ViewController. You app will start there. You can set any ViewController you want.
+The initialViewControllerID is the id of the first ViewController. Your app will start there. You can set any ViewController you want.
 
 ### 5. Add new UIViewControllers to your project:
 
@@ -327,10 +327,10 @@ public class MainStoryboard extends UIStoryboard
 }
 ```
 
-You have you new UIViewController set =) 
+You have your new UIViewController set =) 
 
 
-### 6. How I create I?
+### 6. How I created it?
 
 - Think in one example or structure in iOS I would like to create
 - Code the example in iOS
