@@ -26,6 +26,7 @@ public class ScrollViewPager extends ViewPager
 
     private PagerAdapter adapter;
     private NSMutableArray<NSNumber> subviews_ids = new NSMutableArray<>();
+    private NSMutableArray<UIViewController> controllers = new NSMutableArray<>();
     private UIScrollViewDelegate delegate;
 
 
@@ -33,7 +34,6 @@ public class ScrollViewPager extends ViewPager
     {
         this.setAdapter(adapter);
     }
-
     public void setDelegate(final UIScrollViewDelegate delegate)
     {
         this.delegate = delegate;
@@ -57,8 +57,13 @@ public class ScrollViewPager extends ViewPager
             public void onPageScrollStateChanged(int state) {}
     });
     }
-    public void addPage(UIViewController viewController, int layout_id)
+    public void addPage(UIViewController fromViewController, int layout_id)
     {
+
+        UIViewController controller = fromViewController.storyboard.instantiateViewControllerWithIdentifier(layout_id);
+//        fromViewController.addChildViewController(controller);
+
+        this.controllers.addObject(controller);
         this.subviews_ids.addObject(new NSNumber(layout_id));
 
         adapter = new PagerAdapter()
@@ -68,8 +73,8 @@ public class ScrollViewPager extends ViewPager
             {
                 Context context = UIApplication.sharedApplication().context();
                 LayoutInflater inflater = LayoutInflater.from(context);
-                NSNumber identifier = subviews_ids.objectAtIndex(index);
-                View view = inflater.inflate(identifier.integerValue(), collection, false);
+                UIViewController controller = controllers.objectAtIndex(index);
+                View view = controller.view.fragment().onCreateView(inflater, collection, null);
                 collection.addView(view);
                 return view;
             }

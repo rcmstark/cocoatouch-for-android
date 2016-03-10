@@ -16,14 +16,14 @@ public class UIView extends UIResponder implements UIViewHierarchy
     {
         return this.fragment.viewWithTag(tag);
     }
+    public void setHidden(boolean hidden)
+    {
+        this.fragment.setHidden(hidden);
+    }
 
     //
     // Protected Instance Methods
     //
-    protected  UIView()
-    {
-        this.fragment = new UIFragment();
-    }
     protected UIView(UIViewController viewController, int identifier)
     {
         this.fragment = new UIFragment();
