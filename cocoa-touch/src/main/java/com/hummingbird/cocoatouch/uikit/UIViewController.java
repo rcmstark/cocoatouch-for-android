@@ -1,13 +1,7 @@
 package com.hummingbird.cocoatouch.uikit;
-
-
-import android.app.FragmentTransaction;
-
-import com.hummingbird.animations.NoneTransition;
-import com.hummingbird.animations.PushTransition;
 import com.hummingbird.cocoatouch.foundation.NSMutableArray;
 import com.hummingbird.cocoatouch.messageui.MFComposeViewController;
-import com.hummingbird.cocoatouch.uikit.helper.UIFragment;
+
 
 public class UIViewController extends UIResponder implements UIViewHierarchy
 {

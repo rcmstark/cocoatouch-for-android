@@ -1,9 +1,7 @@
 package com.hummingbird.objectivec.parser;
-
 import com.hummingbird.cocoatouch.uikit.UIButton;
 import com.hummingbird.cocoatouch.uikit.UIViewHierarchy;
 import com.hummingbird.objectivec.annotation.IBAction;
-
 import java.lang.reflect.Method;
 
 
