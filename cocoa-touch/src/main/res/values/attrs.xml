@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="UIPageControl">
+        <attr name="pageIndicatorTintColor" format="reference|color" />
+        <attr name="currentPageIndicatorTintColor" format="reference|color"/>
+        <attr name="numberOfPages" format="integer"/>
+        <attr name="currentPage" format="integer"/>
+    </declare-styleable>
+
+</resources>

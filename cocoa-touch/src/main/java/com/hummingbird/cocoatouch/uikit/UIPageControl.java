@@ -1,29 +1,30 @@
 package com.hummingbird.cocoatouch.uikit;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
+import com.hummingbird.cocoatouch.R;
 
 
 public class UIPageControl extends LinearLayout
 {
 
-    private static int DEFAULT_NUMBER_OF_VIEW = 3;
-    private static float DEFAULT_INDICATOR_SIZE = 30.0f;
-    private static float DEFAULT_INDICATOR_DISTANCE = 20.0f;
+    //Attribute values
+    private int    _currentPage;
+    private int    _numberOfPages;
+    private int    _currentPageIndicatorTintColor;
+    private int    _pageIndicatorTintColor;
 
-    private int mCurrentPage = 0;
-    private int mNumberOfPages = DEFAULT_NUMBER_OF_VIEW;
-    private float mIndicatorSize = DEFAULT_INDICATOR_SIZE;
-    private float mIndicatorDistance = DEFAULT_INDICATOR_DISTANCE;
-    private int mColorCurrent = Color.WHITE;
-    private int mColorNormal = Color.GRAY;
+    //Fixes values
+    private float  _indicatorSize = 30.0f;
+    private float  _indicatorDistance = 20.0f;
+
 
 
     //
@@ -46,26 +47,26 @@ public class UIPageControl extends LinearLayout
     //
     public void setCurrentPage(int pageIndex)
     {
-        if (pageIndex == mCurrentPage) return;
-        mCurrentPage = pageIndex;
+        if (pageIndex == _currentPage) return;
+        _currentPage = pageIndex;
         updateUI();
     }
     public void setNumberOfPages(int numberOfPages)
     {
-        if (numberOfPages == mNumberOfPages) return;
-        mNumberOfPages = numberOfPages;
+        if (numberOfPages == _numberOfPages) return;
+        _numberOfPages = numberOfPages;
         updateUI();
     }
     public void setPageIndicatorTintColor(int color)
     {
-        if (color == mColorNormal) return;
-        mColorNormal = color;
+        if (color == _pageIndicatorTintColor) return;
+        _pageIndicatorTintColor = color;
         updateUI();
     }
     public void setCurrentPageIndicatorTintColor(int color)
     {
-        if (color == mColorCurrent) return;
-        mColorCurrent = color;
+        if (color == _currentPageIndicatorTintColor) return;
+        _currentPageIndicatorTintColor = color;
         updateUI();
     }
 
@@ -76,17 +77,27 @@ public class UIPageControl extends LinearLayout
     {
         setOrientation(LinearLayout.HORIZONTAL);
         setGravity(Gravity.CENTER);
+        fetchAttributes(context, attrs);
         updateUI();
+    }
+    private void fetchAttributes(Context context, AttributeSet attrs)
+    {
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.UIPageControl, 0, 0);
+        _currentPageIndicatorTintColor = a.getColor(R.styleable.UIPageControl_currentPageIndicatorTintColor, Color.WHITE);
+        _pageIndicatorTintColor = a.getColor(R.styleable.UIPageControl_pageIndicatorTintColor, Color.GRAY);
+        _currentPage = a.getInteger(R.styleable.UIPageControl_currentPage, 0);
+        _numberOfPages = a.getInteger(R.styleable.UIPageControl_numberOfPages, 3);
+        a.recycle();
     }
     private void updateUI()
     {
         removeAllViews();
-        for (int i = 0; i < mNumberOfPages; i++)
+        for (int i = 0; i < _numberOfPages; i++)
         {
             View view = new View(getContext());
-            setIndicatorBackground(view, i == mCurrentPage);
-            LayoutParams lp = new LinearLayout.LayoutParams((int)mIndicatorSize, (int)mIndicatorSize);
-            int margin = (int)(mIndicatorDistance / 2);
+            setIndicatorBackground(view, i == _currentPage);
+            LayoutParams lp = new LinearLayout.LayoutParams((int) _indicatorSize, (int) _indicatorSize);
+            int margin = (int)(_indicatorDistance / 2);
             if (getOrientation() == LinearLayout.HORIZONTAL)
             {
                 lp.leftMargin = margin;
@@ -99,14 +110,14 @@ public class UIPageControl extends LinearLayout
             }
             addView(view, lp);
         }
-        requestLayout();
         invalidate();
+        requestLayout();
     }
     private void setIndicatorBackground(View view, boolean isCurrent)
     {
         ShapeDrawable drawableDefault = new ShapeDrawable();
         drawableDefault.setShape(new OvalShape());
-        drawableDefault.getPaint().setColor(isCurrent?mColorCurrent:mColorNormal);
+        drawableDefault.getPaint().setColor(isCurrent? _currentPageIndicatorTintColor : _pageIndicatorTintColor);
 
         if (Build.VERSION.SDK_INT < 16)
             view.setBackgroundDrawable(drawableDefault);
