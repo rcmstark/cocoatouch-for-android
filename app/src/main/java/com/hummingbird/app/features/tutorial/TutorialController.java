@@ -1,7 +1,7 @@
 package com.hummingbird.app.features.tutorial;
 import com.hummingbird.app.R;
 import com.hummingbird.cocoatouch.uikit.UIButton;
-import com.hummingbird.cocoatouch.uikit.UIFragmentController;
+import com.hummingbird.cocoatouch.uikit.UIPageControl;
 import com.hummingbird.cocoatouch.uikit.UIScrollView;
 import com.hummingbird.cocoatouch.uikit.UIScrollViewDelegate;
 import com.hummingbird.cocoatouch.uikit.UIViewController;
@@ -11,8 +11,9 @@ import com.hummingbird.objectivec.annotation.IBOutlet;
 
 public class TutorialController extends UIViewController implements UIScrollViewDelegate
 {
-    @IBOutlet(R.id.tutorial_scrollView) UIScrollView scrollView;
-    @IBOutlet(R.id.tutorial_button) UIButton button;
+    @IBOutlet(R.id.tutorial_scrollView)  UIScrollView scrollView;
+    @IBOutlet(R.id.tutorial_button)      UIButton button;
+    @IBOutlet(R.id.tutorial_pageControl) UIPageControl pageControl;
 
     //
     // Instance Methods
@@ -29,11 +30,10 @@ public class TutorialController extends UIViewController implements UIScrollView
         super.viewDidAppear(animated);
         NSLog(__PRETTY_FUNCTION__());
     }
-
-
     private void setScrollView()
     {
         this.scrollView.setDelegate(this);
+        this.scrollView.setPagingEnabled(true);
     }
     private void addViews()
     {
@@ -58,5 +58,6 @@ public class TutorialController extends UIViewController implements UIScrollView
     public void scrollViewDidScroll(UIScrollView scrollView)
     {
         button.setHidden(scrollView.currentPage != 2);
+        pageControl.setCurrentPage(scrollView.currentPage);
     }
 }

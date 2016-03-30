@@ -10,4 +10,10 @@ public class UIScrollView extends ScrollViewPager
 {
     public UIScrollView(Context context) {super(context);}
     public UIScrollView(Context context, AttributeSet attrs) {super(context, attrs);}
+
+    public void setPagingEnabled(boolean enabled)
+    {
+        //TODO
+        //Remove ScrollViewPager inheritance and use composition
+    }
 }

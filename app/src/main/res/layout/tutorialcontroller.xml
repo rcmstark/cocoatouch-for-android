@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TutorialController"
-    android:background="#ffffff">
+    tools:context=".TutorialController">
 
     <com.hummingbird.cocoatouch.uikit.UIScrollView
         android:layout_width="match_parent"
@@ -30,5 +29,12 @@
         android:paddingRight="14dp"
         android:paddingTop="14dp"
         android:layout_margin="14dp"/>
+
+    <com.hummingbird.cocoatouch.uikit.UIPageControl
+        android:id="@+id/tutorial_pageControl"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_above="@+id/tutorial_button">
+    </com.hummingbird.cocoatouch.uikit.UIPageControl>
 
 </RelativeLayout>

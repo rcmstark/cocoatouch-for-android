@@ -16,15 +16,4 @@
         android:layout_margin="16dp"
         android:gravity="center"/>
 
-    <com.hummingbird.cocoatouch.uikit.UILabel
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="(Page 2)"
-        android:textSize="20sp"
-        android:textColor="#ffffff"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        />
-
 </RelativeLayout>
