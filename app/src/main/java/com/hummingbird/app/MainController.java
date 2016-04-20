@@ -44,6 +44,11 @@ public class MainController extends UIViewController
     {
         presentViewController(R.layout.alertcontroller);
     }
+    @IBAction(R.id.main_text) public void presentTextController(UIButton sender)
+    {
+        presentViewController(R.layout.textcontroller);
+    }
+
 
     //
     // Helpers

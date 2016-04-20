@@ -1,30 +1,25 @@
 package com.hummingbird.cocoatouch.uikit;
+import android.app.Activity;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 
-public class UITextField extends EditText {
-
+public class UITextField extends EditText
+{
     private UITextFieldDelegate delegate = null;
 
-    public UITextField(Context context) {
-        super(context);
-    }
+    public UITextField(Context context) {super(context);}
+    public UITextField(Context context, AttributeSet attrs) {super(context, attrs);}
+    public UITextField(Context context, AttributeSet attrs, int defStyle) {super(context, attrs, defStyle);}
 
-    public UITextField(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    public UITextField(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-    }
-    public String text(){
+    public String text()
+    {
         return getText().toString();
     }
-
     public void setDelegate(UITextFieldDelegate delegate)
     {
         this.delegate = delegate;
@@ -34,8 +29,28 @@ public class UITextField extends EditText {
     {
         this.setHint(placeholder);
     }
+    public void becomeFirstResponder()
+    {
+        this.setFocusableInTouchMode(true);
+        this.requestFocus();
+        Activity activity = UIApplication.sharedApplication().activity();
+        InputMethodManager imm = (InputMethodManager)activity.getSystemService(activity.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
+    public void resignFirstResponder()
+    {
+        Activity activity = UIApplication.sharedApplication().activity();
+        ((InputMethodManager)activity
+                .getSystemService(Context.INPUT_METHOD_SERVICE))
+                .hideSoftInputFromWindow(this.getWindowToken(), 0);
+    }
 
-    private void addListener(){
+
+    //
+    //Helpers
+    //
+    private void addListener()
+    {
         final UITextFieldDelegate delegate = this.delegate;
         final UITextField textField = this;
         addTextChangedListener(new TextWatcher() {

@@ -56,6 +56,12 @@
             android:text="Alerts and Selections"
             android:id="@+id/main_alert"/>
 
+        <com.hummingbird.cocoatouch.uikit.UIButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextField"
+            android:id="@+id/main_text"/>
+
     </LinearLayout>
 
     <com.hummingbird.cocoatouch.uikit.UILabel

@@ -5,6 +5,7 @@ import com.hummingbird.app.features.customobjects.GOTPresentCharactersController
 import com.hummingbird.app.features.customobjects.GOTSetCharactersController;
 import com.hummingbird.app.features.share.ShareController;
 import com.hummingbird.app.features.tableview.TableController;
+import com.hummingbird.app.features.textfield.TextController;
 import com.hummingbird.app.features.transition.NextViewController;
 import com.hummingbird.app.features.transition.TransitionController;
 import com.hummingbird.app.features.tutorial.TutorialController;
@@ -60,6 +61,8 @@ public class MainStoryboard extends UIStoryboard
                 return new ShareController();
             case R.layout.alertcontroller:
                 return new AlertController();
+            case R.layout.textcontroller:
+                return new TextController();
             default:
                 throw new Resources.NotFoundException();
         }

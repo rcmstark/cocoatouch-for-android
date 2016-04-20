@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e7e7e7">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:background="#fff">
+
+        <com.hummingbird.cocoatouch.uikit.UITextField
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/textField1"
+            android:layout_gravity="left|top"
+            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
+            android:paddingRight="20dp"
+            android:paddingEnd="20dp"/>
+
+        <com.hummingbird.cocoatouch.uikit.UITextField
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/textField2"
+            android:layout_gravity="left|top"
+            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
+            android:paddingRight="20dp"
+            android:paddingEnd="20dp"/>
+
+        <com.hummingbird.cocoatouch.uikit.UIButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextFiled 1 become First Responder"
+            android:id="@+id/text_bfr"
+            android:layout_gravity="center_vertical" />
+
+        <com.hummingbird.cocoatouch.uikit.UIButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextFiled 1 resign First Responder"
+            android:id="@+id/text_rfr"
+            android:layout_gravity="center_vertical" />
+
+
+    </LinearLayout>
+</LinearLayout>
