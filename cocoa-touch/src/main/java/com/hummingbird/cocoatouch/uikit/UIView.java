@@ -1,5 +1,4 @@
 package com.hummingbird.cocoatouch.uikit;
-import android.app.Fragment;
 import com.hummingbird.cocoatouch.uikit.helper.UIFragment;
 
 
@@ -19,6 +18,10 @@ public class UIView extends UIResponder implements UIViewHierarchy
     public void setHidden(boolean hidden)
     {
         this.fragment.setHidden(hidden);
+    }
+    public void setUserInteractionEnabled(boolean enabled)
+    {
+        this.fragment.setUserInteractionEnabled(enabled);
     }
 
     //

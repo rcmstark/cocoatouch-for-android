@@ -3,10 +3,14 @@ import android.animation.Animator;
 import android.app.Fragment;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.hummingbird.animations.NoneTransition;
 import com.hummingbird.animations.Transition;
 import com.hummingbird.cocoatouch.uikit.UIApplication;
 import com.hummingbird.cocoatouch.uikit.UIViewController;
@@ -18,19 +22,32 @@ import com.hummingbird.objectivec.parser.IBOutletParser;
 public class UIFragment extends Fragment implements UIViewHierarchy
 {
 
-    public int identifier;
-    public UIViewController viewController;
-    public Transition transition;
-    public boolean animated;
+    public int identifier = 0;
+    public UIViewController viewController = new UIViewController();
+    public Transition transition = new NoneTransition();
+    public boolean animated = false;
     private View container;
 
 
-    @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    @Override public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState)
     {
+        if (this.identifier == 0)
+            return new View(UIApplication.sharedApplication().context());
+
         this.container = inflater.inflate(this.identifier, container, false);
         IBOutletParser.parse(this.viewController);
         IBActionParser.parse(this.viewController);
         this.viewController.viewDidLoad();
+
+        // This code is used to unable to touch UIViewController after a transition
+        // Fix the problem to call action in the behind UIViewController
+        this.container.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override public boolean onTouch(View view, MotionEvent event)
+            {
+                return true;
+            }
+        });
         return this.container;
     }
     @Override public Animator onCreateAnimator(int transit, boolean enter, int nextAnim)
@@ -46,7 +63,11 @@ public class UIFragment extends Fragment implements UIViewHierarchy
     }
     public void setHidden(boolean hidden)
     {
-        this.container.setVisibility(hidden?View.INVISIBLE:View.VISIBLE);
+        this.container.setVisibility(hidden ? View.INVISIBLE : View.VISIBLE);
+    }
+    public void setUserInteractionEnabled(final boolean enabled)
+    {
+        this.container.setEnabled(enabled);
     }
 
     @Override public void onStart()
@@ -76,7 +97,10 @@ public class UIFragment extends Fragment implements UIViewHierarchy
 
 
         if (this.viewController.presentingViewController() != null)
+        {
             this.viewController.presentingViewController().viewDidDisappear(animated);
+            this.viewController.presentingViewController().view.setUserInteractionEnabled(false);
+        }
         this.viewController.viewDidAppear(animated);
     }
     @Override public void onPause()
@@ -106,7 +130,10 @@ public class UIFragment extends Fragment implements UIViewHierarchy
 
 
         if (this.viewController.presentingViewController() != null)
+        {
             this.viewController.presentingViewController().viewDidAppear(animated);
+            this.viewController.presentingViewController().view.setUserInteractionEnabled(true);
+        }
         this.viewController.viewDidDisappear(animated);
     }
 }
