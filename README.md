@@ -206,7 +206,7 @@ I added an example app that use some structures, you should try it.
 4.1 Add to Gradle the last version:
 
 ```sh
-compile 'com.hummingbird:cocoa-touch:0.0.6'
+compile 'com.hummingbird:cocoa-touch:0.0.8'
 ```
 
 4.2 - Create file: MainStoryboard.java
