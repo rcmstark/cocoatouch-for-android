@@ -29,6 +29,10 @@ public class UITextField extends EditText
     {
         this.setHint(placeholder);
     }
+    public String placeholder()
+    {
+        return (String)this.getHint();
+    }
     public void becomeFirstResponder()
     {
         this.setFocusableInTouchMode(true);

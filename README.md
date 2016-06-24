@@ -49,12 +49,7 @@ public class MainActivity extends UIViewController
     @IBOutlet(R.id.button)    UIButton button;
     @IBOutlet(R.id.tableview) UITableView tableview;
     
-    @Override 
-    public void viewDidLoad()
-    {
-        super.viewDidLoad();
-        NSLog(__PRETTY_FUNCTION__());
-    }
+    
     @IBAction(R.id.button) public void click(UIButton sender)
     {
         ...
@@ -206,7 +201,7 @@ I added an example app that use some structures, you should try it.
 4.1 Add to Gradle the last version:
 
 ```sh
-compile 'com.hummingbird:cocoa-touch:0.0.8'
+compile 'com.hummingbird:cocoa-touch:0.0.9'
 ```
 
 4.2 - Create file: MainStoryboard.java
