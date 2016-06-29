@@ -1,6 +1,8 @@
 package com.hummingbird.cocoatouch.uikit;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.ColorRes;
 
 
 public class UIApplication extends UIResponder
@@ -36,6 +38,14 @@ public class UIApplication extends UIResponder
     public boolean isNotificationsEnabled()
     {
         return this.isViewControllerNotificationEnabled;
+    }
+    public void setStatusBarColor(@ColorRes int colorId)
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        {
+            Context context = UIApplication.sharedApplication().context();
+            UIApplication.sharedApplication().activity().getWindow().setStatusBarColor(context.getResources().getColor(colorId));
+        }
     }
 
     //
