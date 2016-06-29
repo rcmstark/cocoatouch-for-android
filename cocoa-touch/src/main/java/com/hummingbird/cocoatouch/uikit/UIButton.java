@@ -1,27 +1,21 @@
 package com.hummingbird.cocoatouch.uikit;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
-
 import com.hummingbird.cocoatouch.foundation.NSSelector;
-
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 
 public class UIButton extends Button
 {
-    public UIButton(Context context) {super(context);}
-    public UIButton(Context context, AttributeSet attrs) {super(context, attrs);}
-    public UIButton(Context context, AttributeSet attrs, int defStyleAttr) {super(context, attrs, defStyleAttr);}
+    public void init(){}
 
-    public void setTitle(String title, int state)
+    public void setTitle(String title, UIControlState state)
     {
         this.setText(title);
     }
-    public String titleForState(int state)
+    public String titleForState(UIControlState state)
     {
         return this.getText().toString();
     }
@@ -58,12 +52,17 @@ public class UIButton extends Button
                 {
                     method.invoke(target, button);
                 }
-                catch (IllegalAccessException | InvocationTargetException e)
+                catch (Exception e)
                 {
                     e.printStackTrace();
                 }
             }
         });
     }
+
+    //Java Trash Code
+    public UIButton(Context context) {super(context);init();}
+    public UIButton(Context context, AttributeSet attrs) {super(context, attrs);init();}
+    public UIButton(Context context, AttributeSet attrs, int defStyleAttr) {super(context, attrs, defStyleAttr);init();}
 
 }
