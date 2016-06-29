@@ -11,11 +11,16 @@ import android.widget.EditText;
 public class UITextField extends EditText
 {
     private UITextFieldDelegate delegate = null;
+    private TextWatcher observer = null;
 
-    public UITextField(Context context) {super(context);}
-    public UITextField(Context context, AttributeSet attrs) {super(context, attrs);}
-    public UITextField(Context context, AttributeSet attrs, int defStyle) {super(context, attrs, defStyle);}
 
+    public void init() {}
+
+    public void setText(String text)
+    {
+        super.setText(text);
+        setSelection(text.length());
+    }
     public String text()
     {
         return getText().toString();
@@ -23,7 +28,10 @@ public class UITextField extends EditText
     public void setDelegate(UITextFieldDelegate delegate)
     {
         this.delegate = delegate;
-        addListener();
+        if (this.delegate != null)
+            addListener();
+        else
+            removeListener();
     }
     public void setPlaceholder(String placeholder)
     {
@@ -49,7 +57,6 @@ public class UITextField extends EditText
                 .hideSoftInputFromWindow(this.getWindowToken(), 0);
     }
 
-
     //
     //Helpers
     //
@@ -57,25 +64,33 @@ public class UITextField extends EditText
     {
         final UITextFieldDelegate delegate = this.delegate;
         final UITextField textField = this;
-        addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count)
+        this.observer = new TextWatcher()
+        {
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-                delegate.textFieldShouldChange(textField,s,start,before,count);
+                if (delegate!= null)
+                    delegate.textFieldShouldChange(textField,s,start,before,count);
             }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after)
             {
-                delegate.textFieldBeforeChange(textField,s,start,count,after);
+                if (delegate != null)
+                    delegate.textFieldBeforeChange(textField,s,start,count,after);
             }
-
-            @Override
-            public void afterTextChanged(Editable s)
+            @Override public void afterTextChanged(Editable s)
             {
-                delegate.textFieldDidChange(textField);
+                if (delegate != null)
+                    delegate.textFieldDidChange(textField);
             }
-        });
+        };
+        addTextChangedListener(observer);
     }
+    private void removeListener()
+    {
+        removeTextChangedListener(observer);
+    }
+
+    //Java Trash Code
+    public UITextField(Context context) {super(context);init();};
+    public UITextField(Context context, AttributeSet attrs) {super(context, attrs);init();}
+    public UITextField(Context context, AttributeSet attrs, int defStyle) {super(context, attrs, defStyle);init();}
 }
