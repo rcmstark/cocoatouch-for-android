@@ -162,11 +162,17 @@ public class UINavigationController extends AppCompatActivity
     @Override public void onBackPressed()
     {
         if (this.modalViewControllers.count() > 0)
+        {
             dismissModalViewControllerAnimated(true);
+        }
         else if (this.pushViewControllers.count() > 1)
+        {
             popViewController(true);
+        }
         else
+        {
             super.onBackPressed();
+        }
     }
     @Override public void onRestart()
     {

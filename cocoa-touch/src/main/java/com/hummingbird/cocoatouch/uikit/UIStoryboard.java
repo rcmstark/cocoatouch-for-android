@@ -1,4 +1,5 @@
 package com.hummingbird.cocoatouch.uikit;
+import android.support.annotation.LayoutRes;
 
 
 public class UIStoryboard extends UINavigationController
@@ -19,7 +20,7 @@ public class UIStoryboard extends UINavigationController
     {
         return null;
     }
-    public final UIViewController instantiateViewControllerWithIdentifier(int identifier)
+    public final UIViewController instantiateViewControllerWithIdentifier(@LayoutRes int identifier)
     {
         UIViewController viewController = this.viewControllerForIdentifier(identifier);
         viewController.setIdentifier(identifier);
