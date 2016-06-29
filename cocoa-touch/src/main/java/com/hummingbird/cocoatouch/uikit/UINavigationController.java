@@ -136,9 +136,13 @@ public class UINavigationController extends AppCompatActivity
         UIFragment fragment = viewController.view.fragment();
         fragment.transition = animated?fragment.transition:new NoneTransition();
         fragmentTransaction
-                .add(containerID(), fragment)
-                .addToBackStack(viewController.getClass().getName())
-                .commit();
+                .add(containerID(), fragment);
+
+        if (this.pushViewControllers.count() > 1) {
+            fragmentTransaction.addToBackStack(viewController.getClass().getName());
+        }
+
+        fragmentTransaction.commit();
     }
     private UIViewController lastViewController(NSArray<UIViewController> array)
     {
