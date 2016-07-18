@@ -42,6 +42,7 @@ public class UIStoryboard extends UINavigationController
         UIApplication application = UIApplication.sharedApplication();
         application.setContext(this);
         application.delegate = this.applicationDelegate();
+        application.delegate.applicationDidFinishLaunchingWithOptions(application, null);
         application.delegate.applicationDidBecomeActive(application);
 
         UIViewController viewController = instantiateViewControllerWithIdentifier(initialViewControllerID());
