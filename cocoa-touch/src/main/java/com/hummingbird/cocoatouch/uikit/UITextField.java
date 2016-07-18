@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -40,6 +41,10 @@ public class UITextField extends EditText
     public String placeholder()
     {
         return (String)this.getHint();
+    }
+    public void setHidden(boolean hidden)
+    {
+        this.setVisibility(hidden ? View.INVISIBLE : View.VISIBLE);
     }
     public void becomeFirstResponder()
     {

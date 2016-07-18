@@ -26,6 +26,10 @@ public class UITableView extends ListView
         this.delegate = delegate;
         addTouchItems();
     }
+    public void setHidden(boolean hidden)
+    {
+        this.setVisibility(hidden ? View.INVISIBLE : View.VISIBLE);
+    }
     public void reloadData()
     {
         final UITableViewDataSource delegate = dataSource;

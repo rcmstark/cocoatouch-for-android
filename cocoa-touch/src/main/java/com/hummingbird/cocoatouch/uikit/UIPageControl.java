@@ -69,6 +69,10 @@ public class UIPageControl extends LinearLayout
         _currentPageIndicatorTintColor = color;
         updateUI();
     }
+    public void setHidden(boolean hidden)
+    {
+        this.setVisibility(hidden ? View.INVISIBLE : View.VISIBLE);
+    }
 
     //
     // Private Instance Methods
