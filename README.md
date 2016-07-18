@@ -201,7 +201,7 @@ I added an example app that use some structures, you should try it.
 4.1 Add to Gradle the last version:
 
 ```sh
-compile 'com.hummingbird:cocoa-touch:0.0.9'
+compile 'com.hummingbird:cocoa-touch:0.0.14'
 ```
 
 4.2 - Create file: MainStoryboard.java
@@ -243,6 +243,10 @@ public class AppDelegate extends UIResponder implements UIApplicationDelegate
         return true;
     }
     @Override public void applicationDidBecomeActive(UIApplication application)
+    {
+        
+    }
+    @Override public void applicationDidBecomeActive(UIApplication application, int requestCode, int resultCode, Intent data)
     {
         
     }

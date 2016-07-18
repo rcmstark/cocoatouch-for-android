@@ -1,6 +1,6 @@
 apply plugin: 'com.jfrog.bintray'
 
-version = '0.0.9' //LIBRARY VERSION
+version = '0.0.14' //LIBRARY VERSION
 //
 // To upload, go to terminal:
 // > cd project_folder
