@@ -17,7 +17,7 @@ public class UINavigationController extends AppCompatActivity
 
     private NSMutableArray<UIViewController> pushViewControllers = new NSMutableArray<>();
     private NSMutableArray<UIViewController> modalViewControllers = new NSMutableArray<>();
-
+    private NSMutableArray<UIViewController> pausedViewControllers = null;
 
     //
     // Public Instance Methods
@@ -126,17 +126,29 @@ public class UINavigationController extends AppCompatActivity
     private void presentViewController(UIViewController viewController, Boolean animated)
     {
         //
+        // Don' let push itens to fragment when activity is finishing or destroyed
+        //
+        if (this.isFinishing())
+            return;
+
+        //
         // Applications is in foreground because this action was trigged by user.
         // This code make ViewControllers to receive calls from viewDidAppear or viewDidDisappead...
         //
         UIApplication.sharedApplication().setNotificationsEnabled(true);
 
+        //
+        // When Activity is paused, you can not peform this
+        //
+        if (this.pausedViewControllers != null) {
+            this.pausedViewControllers.addObject(viewController);
+            return;
+        }
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         UIFragment fragment = viewController.view.fragment();
         fragment.transition = animated?fragment.transition:new NoneTransition();
-        fragmentTransaction
-                .add(containerID(), fragment);
+        fragmentTransaction.add(containerID(), fragment);
 
         if (this.pushViewControllers.count() > 1) {
             fragmentTransaction.addToBackStack(viewController.getClass().getName());
@@ -185,6 +197,8 @@ public class UINavigationController extends AppCompatActivity
         UIApplicationDelegate delegate = application.delegate;
         if (delegate != null)
             delegate.applicationDidBecomeActive(application);
+
+        finishPausedTransitions();
     }
     @Override public void onPause()
     {
@@ -206,6 +220,7 @@ public class UINavigationController extends AppCompatActivity
         //
         UIApplication.sharedApplication().setNotificationsEnabled(false);
     }
+
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
@@ -213,5 +228,29 @@ public class UINavigationController extends AppCompatActivity
         UIApplicationDelegate delegate = application.delegate;
         if (delegate != null)
             delegate.applicationDidBecomeActive(application, requestCode, resultCode, data);
+    }
+    @Override public void onSaveInstanceState(Bundle savedInstanceState)
+    {
+        super.onSaveInstanceState(savedInstanceState);
+        startPausedTransitions();
+    }
+    @Override public void onRestoreInstanceState(Bundle savedInstanceState)
+    {
+        super.onRestoreInstanceState(savedInstanceState);
+        finishPausedTransitions();
+    }
+    private void startPausedTransitions()
+    {
+        this.pausedViewControllers = new NSMutableArray<>();
+    }
+    private void finishPausedTransitions()
+    {
+        if (this.pausedViewControllers == null) return;
+        for (UIViewController controller : this.pausedViewControllers)
+        {
+            presentViewController(controller, false);
+        }
+        this.pausedViewControllers.removeAllObjects();
+        this.pausedViewControllers = null;
     }
 }
