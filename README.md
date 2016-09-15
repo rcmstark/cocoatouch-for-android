@@ -178,13 +178,41 @@ public class ReceiverController extends UIViewController
 Sweet, right? Simple as you do in iOS.
 
 
-### 2. Limitations
+### 2. How it works?
+
+This framework is based on a Single Activity Application and each ViewController is represented by fragments using composition. 
+
+
+### 3. How I receive onBackPressed Notifications
+
+if you add this method to your controller, you will receive on back notifications. It's the same of receive a button pressed action. 
+
+```sh
+@IBAction(DefaultActions.onBackPressed) public void back(UIButton sender)
+{
+    //TODO
+}
+```
+
+If you don't add it, the back button will close you app.
+
+### 4. How Can I get Context or the Activity?
+
+```sh
+
+Activity activity = UIApplication.sharedApplication().activity();
+
+Context context = UIApplication.sharedApplication().context();
+
+```
+
+### 5. Limitations
 
 I created some structures such as UIViewContorller, UIButton, UITableView, UILabel... that I needed to create my app. But there are a lot of to do yet. iOS have a bunch of other elements that needs to be coded. Maybe I'm here looking for contributors. 
 
 I added an example app that use some structures, you should try it.
 
-### 3. //TODO
+### 6. //TODO
 
 - Use composition instead of inheritance to simulate Android structures. Inheritance is bad because:
     - UIScrollView can be ViewerPager, ScrollView, HorizontalScrollView, VerticalScrollView.
@@ -196,15 +224,15 @@ I added an example app that use some structures, you should try it.
         - http://stackoverflow.com/questions/2695646/declaring-a-custom-android-ui-element-using-xml
 
 
-### 4. Installation and Configure Project
+### 7. Installation and Configure Project
 
-4.1 Add to Gradle the last version:
+7.1 Add to Gradle the last version:
 
 ```sh
-compile 'com.hummingbird:cocoa-touch:0.0.14'
+compile 'com.hummingbird:cocoa-touch:0.0.27'
 ```
 
-4.2 - Create file: MainStoryboard.java
+7.2 - Create file: MainStoryboard.java
 
 ```sh
 public class MainStoryboard extends UIStoryboard
@@ -212,7 +240,7 @@ public class MainStoryboard extends UIStoryboard
 }
 ```
 
-4.3 - Go to AndroidManifest and make it the fist launch Activity
+7.3 - Go to AndroidManifest and make it the fist launch Activity
 ```sh
         <activity android:name=".MainStoryboard">
             <intent-filter>
@@ -221,7 +249,7 @@ public class MainStoryboard extends UIStoryboard
             </intent-filter>
         </activity> 
 ```
-4.4 - Create a XML in res/layout named mainstoryboard.xml. (Copy and paste this code)
+7.4 - Create a XML in res/layout named mainstoryboard.xml. (Copy and paste this code)
 
 ```sh
 <?xml version="1.0" encoding="utf-8"?>
@@ -233,7 +261,7 @@ public class MainStoryboard extends UIStoryboard
 </FrameLayout>
 ```
 
-4.5 - Create file: AppDelegate.java
+7.5 - Create file: AppDelegate.java
 
 ```sh
 public class AppDelegate extends UIResponder implements UIApplicationDelegate
@@ -252,7 +280,7 @@ public class AppDelegate extends UIResponder implements UIApplicationDelegate
     }
 }
 ```
-4.6 - Override methods in MainStoryboard, declaring the initial UIViewController id and mapping layout ids with classes
+7.6 - Override methods in MainStoryboard, declaring the initial UIViewController id and mapping layout ids with classes
 
 ```sh
 public class MainStoryboard extends UIStoryboard
@@ -288,7 +316,7 @@ public class MainStoryboard extends UIStoryboard
 
 The initialViewControllerID is the id of the first ViewController. Your app will start there. You can set any ViewController you want.
 
-### 5. Add new UIViewControllers to your project:
+### 8. Add new UIViewControllers to your project:
 
 - Create a new java file and make your class inherit UIViewController
 - Create a XML file in res/layout
@@ -329,7 +357,7 @@ public class MainStoryboard extends UIStoryboard
 You have your new UIViewController set =) 
 
 
-### 6. How I created it?
+### 9. How I created it?
 
 - Think in one example or structure in iOS I would like to create
 - Code the example in iOS
@@ -337,11 +365,11 @@ You have your new UIViewController set =)
 - Code it in Android and make it works
 - Create classes to simulate iOS but do the Android code under the table
 
-### 7. Enjoy
+### 10. Enjoy
 
 You can contact me here or just send me an email: rafael.castro@hummingbird.com.br
 
-### 8. License
+### 11. License
 
 Apache-2.0
 
