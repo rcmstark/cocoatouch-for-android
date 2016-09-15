@@ -41,7 +41,7 @@ public class UINavigationController extends AppCompatActivity
     {
         UIViewController presentedViewController = lastViewController(this.pushViewControllers);
         viewController.navigationController = this;
-        viewController.setPresentingViewController(presentedViewController);
+        viewController.setPresentingViewController(null);
         viewController.view.fragment().transition = animated?new PushTransition():new NoneTransition();
         if (presentedViewController != null)
             presentedViewController.setPresentedViewController(viewController);
