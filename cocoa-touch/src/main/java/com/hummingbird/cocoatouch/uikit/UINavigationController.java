@@ -1,15 +1,21 @@
 package com.hummingbird.cocoatouch.uikit;
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
+
 import com.hummingbird.animations.NoneTransition;
 import com.hummingbird.animations.PushTransition;
 import com.hummingbird.cocoatouch.foundation.NSArray;
 import com.hummingbird.cocoatouch.foundation.NSMutableArray;
 import com.hummingbird.cocoatouch.messageui.MFComposeViewController;
 import com.hummingbird.cocoatouch.uikit.helper.UIFragment;
+import com.hummingbird.culture.BackPressedParser;
+
+import java.lang.reflect.Method;
 
 
 public class UINavigationController extends AppCompatActivity
@@ -177,17 +183,25 @@ public class UINavigationController extends AppCompatActivity
     }
     @Override public void onBackPressed()
     {
+        UIViewController lastController = null;
         if (this.modalViewControllers.count() > 0)
-        {
-            dismissModalViewControllerAnimated(true);
-        }
+            lastController = this.modalViewControllers.lastObject();
+
         else if (this.pushViewControllers.count() > 1)
+            lastController = this.pushViewControllers.lastObject();
+
+
+        Method method = BackPressedParser.onBackPressedMethod(lastController);
+        if (method == null)
+            UIApplication.sharedApplication().activity().finish();
+
+        try
         {
-            popViewController(true);
+            method.invoke(lastController, new Object[] {null});
         }
-        else
+        catch (Exception e)
         {
-            super.onBackPressed();
+            e.printStackTrace();
         }
     }
     @Override public void onRestart()
