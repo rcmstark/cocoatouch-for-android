@@ -28,4 +28,9 @@ public class NSArray<NSObject> implements Iterable<NSObject>
     {
         return this.array.iterator();
     }
+    public NSObject lastObject()
+    {
+        if (array.isEmpty()) return null;
+        return array.get(array.size() - 1);
+    }
 }
