@@ -1,9 +1,7 @@
 package com.hummingbird.objectivec.parser;
-
 import com.hummingbird.cocoatouch.foundation.NSObject;
 import com.hummingbird.cocoatouch.uikit.UIViewHierarchy;
 import com.hummingbird.objectivec.annotation.IBOutlet;
-
 import java.lang.reflect.Field;
 
 

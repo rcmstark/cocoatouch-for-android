@@ -45,8 +45,7 @@ public class UIButton extends Button
         final UIButton button = this;
         this.setOnClickListener(new OnClickListener()
         {
-            @Override
-            public void onClick(View view)
+            @Override public void onClick(View view)
             {
                 try
                 {
