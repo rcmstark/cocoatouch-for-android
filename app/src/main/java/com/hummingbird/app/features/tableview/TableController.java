@@ -2,10 +2,13 @@ package com.hummingbird.app.features.tableview;
 import com.hummingbird.app.R;
 import com.hummingbird.cocoatouch.foundation.NSIndexPath;
 import com.hummingbird.cocoatouch.foundation.NSMutableArray;
+import com.hummingbird.cocoatouch.uikit.UIButton;
 import com.hummingbird.cocoatouch.uikit.UITableView;
 import com.hummingbird.cocoatouch.uikit.UITableViewCell;
 import com.hummingbird.cocoatouch.uikit.UITableViewDataSource;
 import com.hummingbird.cocoatouch.uikit.UIViewController;
+import com.hummingbird.culture.DefaultActions;
+import com.hummingbird.objectivec.annotation.IBAction;
 import com.hummingbird.objectivec.annotation.IBOutlet;
 
 
@@ -32,6 +35,14 @@ public class TableController extends UIViewController implements UITableViewData
     {
         super.viewDidAppear(animated);
         NSLog(__PRETTY_FUNCTION__());
+    }
+
+    //
+    // Actions
+    //
+    @IBAction(DefaultActions.onBackPressed) public void back(UIButton sender)
+    {
+        this.navigationController.popViewController(true);
     }
 
     //

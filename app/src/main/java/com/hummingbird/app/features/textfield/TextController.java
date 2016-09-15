@@ -3,6 +3,7 @@ import com.hummingbird.app.R;
 import com.hummingbird.cocoatouch.uikit.UIButton;
 import com.hummingbird.cocoatouch.uikit.UITextField;
 import com.hummingbird.cocoatouch.uikit.UIViewController;
+import com.hummingbird.culture.DefaultActions;
 import com.hummingbird.objectivec.annotation.IBAction;
 import com.hummingbird.objectivec.annotation.IBOutlet;
 
@@ -27,6 +28,10 @@ public class TextController extends UIViewController
     //
     // Actions
     //
+    @IBAction(DefaultActions.onBackPressed) public void back(UIButton sender)
+    {
+        this.navigationController.popViewController(true);
+    }
     @IBAction(R.id.text_bfr) public void becomeFirstResponder(UIButton sender)
     {
         textField1.becomeFirstResponder();

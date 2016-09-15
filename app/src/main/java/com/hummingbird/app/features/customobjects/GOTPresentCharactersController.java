@@ -5,6 +5,7 @@ import com.hummingbird.cocoatouch.uikit.UIAlertView;
 import com.hummingbird.cocoatouch.uikit.UIButton;
 import com.hummingbird.cocoatouch.uikit.UILabel;
 import com.hummingbird.cocoatouch.uikit.UIViewController;
+import com.hummingbird.culture.DefaultActions;
 import com.hummingbird.objectivec.annotation.IBAction;
 import com.hummingbird.objectivec.annotation.IBOutlet;
 
@@ -50,6 +51,10 @@ public class GOTPresentCharactersController extends UIViewController
     //
     // Actions
     //
+    @IBAction(DefaultActions.onBackPressed) public void back(UIButton sender)
+    {
+        this.dismissViewControllerAnimated(true);
+    }
     @IBAction(R.id.present_oldest) public void presentOldest(UIButton sender)
     {
         String message = oldest.name + " is the oldest character";

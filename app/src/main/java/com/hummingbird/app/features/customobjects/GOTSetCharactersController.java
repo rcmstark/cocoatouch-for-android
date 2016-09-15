@@ -4,6 +4,7 @@ import com.hummingbird.cocoatouch.foundation.NSMutableArray;
 import com.hummingbird.cocoatouch.uikit.UIButton;
 import com.hummingbird.cocoatouch.uikit.UIModalTransitionStyle;
 import com.hummingbird.cocoatouch.uikit.UIViewController;
+import com.hummingbird.culture.DefaultActions;
 import com.hummingbird.objectivec.annotation.IBAction;
 
 public class GOTSetCharactersController extends UIViewController
@@ -14,6 +15,13 @@ public class GOTSetCharactersController extends UIViewController
         NSLog(__PRETTY_FUNCTION__());
     }
 
+    //
+    // Actions
+    //
+    @IBAction(DefaultActions.onBackPressed) public void back(UIButton sender)
+    {
+        this.navigationController.popViewController(true);
+    }
     @IBAction(R.id.setcharacters) public void set(UIButton sender)
     {
         // Create Characters

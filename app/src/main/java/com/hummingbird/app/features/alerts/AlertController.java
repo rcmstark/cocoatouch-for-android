@@ -6,6 +6,7 @@ import com.hummingbird.cocoatouch.uikit.UIActionSheetDelegate;
 import com.hummingbird.cocoatouch.uikit.UIAlertView;
 import com.hummingbird.cocoatouch.uikit.UIButton;
 import com.hummingbird.cocoatouch.uikit.UIViewController;
+import com.hummingbird.culture.DefaultActions;
 import com.hummingbird.objectivec.annotation.IBAction;
 
 
@@ -23,6 +24,13 @@ public class AlertController extends UIViewController implements UIActionSheetDe
         NSLog(__PRETTY_FUNCTION__());
     }
 
+    //
+    // Actions
+    //
+    @IBAction(DefaultActions.onBackPressed) public void back(UIButton sender)
+    {
+        this.navigationController.popViewController(true);
+    }
     @IBAction(R.id.uialertview) public void presentAlerView(UIButton sender)
     {
         UIAlertView alertView = new UIAlertView().initWithTitle("Hey buddy")

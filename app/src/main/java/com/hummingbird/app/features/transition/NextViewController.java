@@ -1,8 +1,11 @@
 package com.hummingbird.app.features.transition;
 
 import com.hummingbird.app.R;
+import com.hummingbird.cocoatouch.uikit.UIButton;
 import com.hummingbird.cocoatouch.uikit.UILabel;
 import com.hummingbird.cocoatouch.uikit.UIViewController;
+import com.hummingbird.culture.DefaultActions;
+import com.hummingbird.objectivec.annotation.IBAction;
 import com.hummingbird.objectivec.annotation.IBOutlet;
 
 
@@ -22,5 +25,12 @@ public class NextViewController extends UIViewController
     {
         super.viewDidAppear(animated);
         NSLog(__PRETTY_FUNCTION__());
+    }
+    @IBAction(DefaultActions.onBackPressed) public void back(UIButton sender)
+    {
+        if (this.presentingViewController() != null)
+            this.dismissViewControllerAnimated(true);
+        else
+            this.navigationController.popViewController(true);
     }
 }

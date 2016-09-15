@@ -3,6 +3,7 @@ import com.hummingbird.app.R;
 import com.hummingbird.cocoatouch.uikit.UIButton;
 import com.hummingbird.cocoatouch.uikit.UIModalTransitionStyle;
 import com.hummingbird.cocoatouch.uikit.UIViewController;
+import com.hummingbird.culture.DefaultActions;
 import com.hummingbird.objectivec.annotation.IBAction;
 
 
@@ -23,6 +24,10 @@ public class TransitionController extends UIViewController
     //
     // Actions
     //
+    @IBAction(DefaultActions.onBackPressed) public void back(UIButton sender)
+    {
+        this.navigationController.popViewController(true);
+    }
     @IBAction(R.id.crossdissolve) public void transitionCrossDissolve(UIButton sender)
     {
         NextViewController controller = (NextViewController)this.storyboard.instantiateViewControllerWithIdentifier(R.layout.nextviewcontroller);

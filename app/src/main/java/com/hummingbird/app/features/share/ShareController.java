@@ -4,6 +4,7 @@ import com.hummingbird.app.R;
 import com.hummingbird.cocoatouch.uikit.UIAlertView;
 import com.hummingbird.cocoatouch.uikit.UIButton;
 import com.hummingbird.cocoatouch.uikit.UIViewController;
+import com.hummingbird.culture.DefaultActions;
 import com.hummingbird.objectivec.annotation.IBAction;
 
 
@@ -27,6 +28,10 @@ public class ShareController extends UIViewController implements FacebookLoginDe
     //
     // Share Actions
     //
+    @IBAction(DefaultActions.onBackPressed) public void back(UIButton sender)
+    {
+        this.navigationController.popViewController(true);
+    }
     @IBAction(R.id.share_sms) public void shareSMS(UIButton sender)
     {
         SMS.share(link, this);

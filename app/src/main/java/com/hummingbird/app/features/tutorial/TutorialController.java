@@ -5,6 +5,7 @@ import com.hummingbird.cocoatouch.uikit.UIPageControl;
 import com.hummingbird.cocoatouch.uikit.UIScrollView;
 import com.hummingbird.cocoatouch.uikit.UIScrollViewDelegate;
 import com.hummingbird.cocoatouch.uikit.UIViewController;
+import com.hummingbird.culture.DefaultActions;
 import com.hummingbird.objectivec.annotation.IBAction;
 import com.hummingbird.objectivec.annotation.IBOutlet;
 
@@ -46,6 +47,10 @@ public class TutorialController extends UIViewController implements UIScrollView
     //
     // Actions
     //
+    @IBAction(DefaultActions.onBackPressed) public void back(Object sender)
+    {
+        this.navigationController.popViewController(false);
+    }
     @IBAction(R.id.tutorial_button) public void dismiss(UIButton button)
     {
         this.navigationController.popViewController(false);
